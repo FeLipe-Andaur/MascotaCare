@@ -1,0 +1,35 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Información de su Perro
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<br>
+<ion-content [fullscreen]="true" alt="login"
+  style="--background: url('/assets/img/fondoMascota.png') no-repeat center/cover;">
+
+  <br>
+
+  <ion-item>
+    <ion-input label="Nombre" labelPlacement="floating" [(ngModel)]="data.nombre"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input label="genero" labelPlacement="floating" [(ngModel)]="data.genero"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-select label="raza" label-placement="floating" placeholder="Seleccione" [(ngModel)]="data.raza">
+      <ion-select-option *ngFor="let r of raza" [value]="r.id">{{r.nombreRaza}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-input label="Fecha de Nacimiento" labelPlacement="floating" type="date"
+      [(ngModel)]="data.fecNacimiento"></ion-input>
+  </ion-item>
+  <ion-grid [fixed]="true">
+    <ion-row>
+      <ion-col><ion-button shape="block" (click)="limpiar()">Limpiar</ion-button></ion-col>
+      <ion-col><ion-button shape="block" (click)="mostrar()">Mostrar</ion-button></ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,28 @@
+ion-title {
+    text-align: center;
+}
+
+ion-content {
+    --background: rgb(238, 174, 202);
+    --background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(241, 164, 14, 0.8645833333333334) 0%);
+}
+
+ion-card {
+    --background: rgb(133, 24, 71);
+    --background: radial-gradient(circle, rgb(212, 72, 133) 0%, rgba(177, 60, 31, 0.865) 0%);
+}
+
+ion-item {
+    --background: rgba(8, 248, 216, 0.014);
+
+}
+
+ion-card-title {
+    color: azure;
+    text-align: center;
+}
+
+ion-button {
+    color: azure;
+    --background: rgb(36, 21, 12);
+}

@@ -1,0 +1,28 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Seleccione su Mascota
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding" style="--background: url('/assets/img/fondoMascota.png') no-repeat center/cover;">
+  <div class="centered-content"> <ion-grid>
+      <ion-row>
+        <ion-col size="12" class="ion-text-center">
+          <div class="mascota-container" (click)="seleccionarMascota('perro')">
+            <img src="assets/img/PerroIcono.png" alt="Perro">
+            <ion-label>Perro</ion-label>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12" class="ion-text-center">
+          <div class="mascota-container" (click)="seleccionarMascota('gato')">
+            <img src="assets/img/GatoIcono.png" alt="Gato">
+            <ion-label>Gato</ion-label>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>
