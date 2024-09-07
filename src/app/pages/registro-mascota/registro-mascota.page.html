@@ -15,10 +15,10 @@
     <ion-input label="Nombre" labelPlacement="floating" [(ngModel)]="data.nombre"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-input label="genero" labelPlacement="floating" [(ngModel)]="data.genero"></ion-input>
+    <ion-input label="Genero" labelPlacement="floating" [(ngModel)]="data.genero"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-select label="raza" label-placement="floating" placeholder="Seleccione" [(ngModel)]="data.raza">
+    <ion-select label="Raza" label-placement="floating" placeholder="Seleccione" [(ngModel)]="data.raza">
       <ion-select-option *ngFor="let r of raza" [value]="r.id">{{r.nombreRaza}}</ion-select-option>
     </ion-select>
   </ion-item>

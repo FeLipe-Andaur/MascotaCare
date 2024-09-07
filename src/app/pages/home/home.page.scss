@@ -78,3 +78,14 @@ ion-button {
   text-align: center;
 
 }
+
+.mascota-container {
+  display: inline-block;
+  cursor: pointer;
+  transition: transform 0.1s ease;
+}
+
+.mascota-container img {
+  width: 300px; 
+  height: auto;
+}
