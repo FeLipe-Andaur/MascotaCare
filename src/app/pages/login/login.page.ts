@@ -19,14 +19,14 @@ export class LoginPage implements OnInit {
   }
   ingresar() {
     if (this.validateModel(this.login)) {
-      this.presentToast("top", "Bienvenidos");
+      this.presentToast("bottom", "Bienvenidos " + this.login.usuario);
 
       let navigationExtras: NavigationExtras = {
         state: { login: this.login }
       };
       this.router.navigate(['/home'], navigationExtras);
     } else {
-      this.presentToast("middle", "Error - Falta: " + this.field, 5000);
+      this.presentToast("middle", "Falta el campo " + this.field, 3000);
     }
   }
 
