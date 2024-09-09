@@ -1,5 +1,6 @@
 import { Component, AfterViewInit, ViewChildren, QueryList, ElementRef } from '@angular/core';
-import { NavController, AnimationController } from '@ionic/angular';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NavController, AnimationController, AlertController, } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -8,11 +9,22 @@ import { NavController, AnimationController } from '@ionic/angular';
 })
 export class SeleccionMascota implements AfterViewInit {
   @ViewChildren('card', { read: ElementRef }) cardElements!: QueryList<ElementRef>;
+  login: any;
 
   constructor(
-    private navCtrl: NavController,
-    private animationController: AnimationController
-  ) { }
+    public alertController: AlertController, private navCtrl: NavController,
+    private animationController: AnimationController, private router: Router,
+    private activatedRoute: ActivatedRoute) {
+
+    //informacion del login
+    this.activatedRoute.queryParams.subscribe((params) => {
+      if (this.router.getCurrentNavigation()?.extras.state) {
+        this.login = this.router.getCurrentNavigation()?.extras?.state?.['login'];
+        //mostrar en cosnola
+        console.log(this.login);
+      }
+    })
+  }
 
   seleccionarMascota(tipoMascota: string) {
     if (tipoMascota === 'perro') {
@@ -32,10 +44,37 @@ export class SeleccionMascota implements AfterViewInit {
           { offset: 0.5, transform: 'scale(1.2)', opacity: '1' },
           { offset: 1, transform: 'scale(1)', opacity: '1' },
         ])
-        .duration(1000) // Duración en milisegundos
-        .iterations(Infinity); // Repite la animación infinitamente
+        .duration(1000)
+        .iterations(Infinity);
 
-      animation.play(); // Reproduce la animación
+      animation.play();
     });
   }
+
+  //mostrar Alerta 
+
+  cerrarSesionAlert() {
+    this.presentAlert(
+      'Cerrrar Sesion :',
+      'Sesion cerrada correctamente'
+    );
+
+  }
+
+  //Crear Alerta
+  async presentAlert(msgHeader: string, msg: string) {
+    const alert = await this.alertController.create({
+      header: msgHeader,
+      message: msg,
+      buttons: [{
+        text: 'OK',
+        handler: () => {
+          this.router.navigate(['/login']);
+        },
+      },
+      ],
+    });
+    await alert.present();
+  }
+
 }

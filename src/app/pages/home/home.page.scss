@@ -5,6 +5,8 @@ ion-content {
 
 }
 
+
+
 ion-toolbar {
   --background: rgb(216, 157, 68);
 }
@@ -33,6 +35,12 @@ ion-card-title {
 ion-button {
   color: azure;
   --background: rgb(204, 90, 37);
+}
+
+ion-toast.bienvenida-toast {
+  --offset-bottom: auto !important; // Evita que se pegue al fondo
+  bottom: 50% !important; // Posiciónalo en el centro vertical
+  transform: translateY(50%) !important; // Ajusta la posición vertical
 }
 
 #container {
@@ -86,6 +94,6 @@ ion-button {
 }
 
 .mascota-container img {
-  width: 300px; 
+  width: 300px;
   height: auto;
 }
