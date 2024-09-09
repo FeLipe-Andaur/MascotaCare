@@ -27,24 +27,16 @@ ion-button {
     --background: rgb(36, 21, 12);
 }
 
-.toast-centered {
-    .toast-message {
-        text-align: center;
-    }
-}
-
-
 .input-with-user-icon ion-icon {
-    color: #000000;
-    font-size: 20px;
-    margin-right: 8px;
-    vertical-align: middle;
-}
-
-
-.input-with-lock ion-icon {
+    color: #000000; /* Cambia el color del ícono */
+    font-size: 20px; /* Ajusta el tamaño del ícono */
+    margin-right: 8px; /* Espacio entre el ícono y el input */
+  }
+  
+  
+  .input-with-lock ion-icon {
     color: #666;
-    font-size: 20px;
-    margin-right: 8px;
-    vertical-align: middle;
-}
+    font-size: 20px; 
+    margin-right: 8px; 
+  }
+  

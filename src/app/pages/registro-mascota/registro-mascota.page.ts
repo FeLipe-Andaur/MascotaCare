@@ -49,7 +49,7 @@ export class RegistroMascotaPage {
   mostrar() {
     if (this.data.nombre && this.data.genero && this.data.raza && this.data.fecNacimiento) {
       const razaSeleccionada = this.raza.find(r => r.id === this.data.raza);
-      const nombreRaza = razaSeleccionada ? razaSeleccionada.nombreRaza : this.data.otraRaza || 'Raza desconocida';
+      const nombreRaza = razaSeleccionada ? razaSeleccionada.raza : this.data.otraRaza || 'Raza desconocida';
 
       this.presentAlert("Información",
         `Nombre: ${this.data.nombre} Género: ${this.data.genero} Raza: ${nombreRaza} Fecha de Nacimiento: ${this.data.fecNacimiento}`
@@ -58,6 +58,7 @@ export class RegistroMascotaPage {
       this.presentAlert("Error", "Por favor, complete todos los campos.");
     }
   }
+
   async presentAlert(msgHeader: string, msg: string) {
     const alert = await this.alertController.create({
       header: msgHeader,
