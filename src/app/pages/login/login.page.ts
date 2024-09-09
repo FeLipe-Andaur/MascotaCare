@@ -19,7 +19,7 @@ export class LoginPage implements OnInit {
   }
   ingresar() {
     if (this.validateModel(this.login)) {
-      this.presentToast("bottom", "Bienvenidos " + this.login.usuario);
+      this.presentToast("top", "Inicio de sesion " + this.login.usuario);
 
       let navigationExtras: NavigationExtras = {
         state: { login: this.login }
