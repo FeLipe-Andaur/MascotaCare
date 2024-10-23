@@ -24,6 +24,7 @@ export class LoginPage implements OnInit {
       let navigationExtras: NavigationExtras = {
         state: { login: this.login }
       };
+      localStorage.setItem('isLoggedIn', 'true');
       this.router.navigate(['/home'], navigationExtras);
     } else {
       this.presentToast("middle", "Falta el campo " + this.field, 3000);

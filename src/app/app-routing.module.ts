@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
 
@@ -14,11 +15,17 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    loadChildren: () => import('./pages/home/home.module').then(m => m.SeleccionMascotaModule)
+    loadChildren: () => import('./pages/home/home.module').then(m => m.SeleccionMascotaModule),
+    canActivate: [AuthGuard]
   },
   {
-    path: 'registro-mascota',
-    loadChildren: () => import('./pages/registro-mascota/registro-mascota.module').then(m => m.RegistroMascotaModule)
+    path: 'registro-perros',
+    loadChildren: () => import('./pages/registro-perros/registro-perros.module').then(m => m.RegistroPerrosModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'registro-gatos',
+    loadChildren: () => import('./pages/registro-gatos/registro-gatos.module').then( m => m.RegistroGatosPageModule)
   },
 
   {
@@ -37,11 +44,18 @@ const routes: Routes = [
     path: 'intro',
     loadChildren: () => import('./pages/intro/intro.module').then(m => m.IntroPageModule)
   },
+  {
+    path: 'centro-asistencia',
+    loadChildren: () => import('./pages/centro-asistencia/centro-asistencia.module').then( m => m.CentroAsistenciaPageModule)
+  },
   //Siempre va al final, permnite redirigir a una pagina de error
   {
     path: '**',
     loadChildren: () => import('./pages/error/error.module').then(m => m.ErrorPageModule)
   },
+ 
+
+
 ];
 
 @NgModule({

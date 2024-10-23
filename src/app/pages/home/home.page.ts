@@ -28,9 +28,9 @@ export class SeleccionMascota implements AfterViewInit {
 
   seleccionarMascota(tipoMascota: string) {
     if (tipoMascota === 'perro') {
-      this.navCtrl.navigateForward('/registro-mascota');
+      this.navCtrl.navigateForward('/registro-perros');
     } else if (tipoMascota === 'gato') {
-      this.navCtrl.navigateForward('/registro-mascota2');
+      this.navCtrl.navigateForward('/registro-gatos');
     }
   }
 
