@@ -6,7 +6,7 @@
       </ion-button>
     </ion-buttons>
     <ion-title>
-      Información de su Perro
+      Información de su Gato
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -20,7 +20,14 @@
     <ion-input label="Nombre" labelPlacement="floating" [(ngModel)]="data.nombre"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-input label="Genero" labelPlacement="floating" [(ngModel)]="data.genero"></ion-input>
+    <ion-select label="Genero" labelPlacement="floating" placeholder="Seleccione" [(ngModel)]="data.genero">
+      <ion-select-option *ngFor="let g of genero" [value]="g.id">{{g.nombreGenero}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-select label="Esterilizado" labelPlacement="floating" placeholder="Seleccione" [(ngModel)]="data.esterilizado">
+      <ion-select-option *ngFor="let e of esterilizado" [value]="e.id">{{e.nombreEsterilizado}}</ion-select-option>
+    </ion-select>
   </ion-item>
   <ion-item>
     <ion-select label="Raza" label-placement="floating" placeholder="Seleccione" [(ngModel)]="data.raza">
@@ -35,6 +42,7 @@
     <ion-row>
       <ion-col><ion-button shape="block" (click)="limpiar()">Limpiar</ion-button></ion-col>
       <ion-col><ion-button shape="block" (click)="mostrar()">Mostrar</ion-button></ion-col>
+      <ion-col><ion-button shape="block" (click)="mostrar()">Ingresar</ion-button></ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>

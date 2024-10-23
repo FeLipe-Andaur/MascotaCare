@@ -3,11 +3,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 
 @Component({
-  selector: 'app-registro-mascota',
-  templateUrl: './registro-mascota.page.html',
-  styleUrls: ['./registro-mascota.page.scss'],
+  selector: 'app-registro-perros',
+  templateUrl: './registro-perros.page.html',
+  styleUrls: ['./registro-perros.page.scss'],
 })
-export class RegistroMascotaPage {
+export class RegistroPerrosPage {
 
 
   raza: any[] = [
@@ -19,12 +19,29 @@ export class RegistroMascotaPage {
 
   ];
 
+  vacuna: any[] = [
+    { id: 1, nombreVacuna: "Si" },
+    { id: 2, nombreVacuna: "No" },
+ 
+  ];
+
+  genero: any[] = [
+    { id: 1, nombreGenero: "Masculino" },
+    { id: 2, nombreGenero: "Femenino" },
+ 
+  ];
+
   data: any = {
     nombre: "",
     genero: "",
+    vacuna: "",
     raza: "",
     fecNacimiento: ""
   };
+
+
+
+
 
   login: any;
   constructor(public alertController: AlertController,
@@ -51,8 +68,14 @@ export class RegistroMascotaPage {
       const razaSeleccionada = this.raza.find(r => r.id === this.data.raza);
       const nombreRaza = razaSeleccionada ? razaSeleccionada.nombreRaza : this.data.otraRaza || 'Raza desconocida';
 
+      const generoSeleccionado = this.genero.find(g => g.id === this.data.genero);
+      const nombreGenero = generoSeleccionado ? generoSeleccionado.nombreGenero : "Genero desconocido"
+
+      const vacunaSeleccionada = this.vacuna.find(v => v.id === this.data.vacuna);
+      const nombreVacuna = vacunaSeleccionada ? vacunaSeleccionada.nombreVacuna : "Vacuna desconocida"
+
       this.presentAlert("Información",
-        `Nombre: ${this.data.nombre} Género: ${this.data.genero} Raza: ${nombreRaza} Fecha de Nacimiento: ${this.data.fecNacimiento}`
+        `Nombre: ${this.data.nombre} Género: ${nombreGenero} vacuna: ${nombreVacuna} Raza: ${nombreRaza} Fecha de Nacimiento: ${this.data.fecNacimiento}`
       );
     } else {
       this.presentAlert("Error", "Por favor, complete todos los campos.");

@@ -1,0 +1,64 @@
+ion-content {
+    --background-image: url('/assets/img/fondoMascota.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+
+}
+
+ion-toolbar {
+    --background: rgb(216, 157, 68);
+}
+
+ion-title {
+    text-align: center;
+    color: rgb(0, 0, 0);
+    background-color: rgb(216, 157, 68);
+}
+
+ion-card {
+    --background: rgb(133, 24, 71);
+    --background: radial-gradient(circle, rgb(212, 72, 133) 0%, rgba(228, 98, 54, 0.865) 0%);
+}
+
+ion-item {
+    --background: rgba(187, 116, 58, 0.904);
+
+}
+
+ion-card-title {
+    color: rgb(202, 184, 82);
+    text-align: center;
+}
+
+ion-button {
+    color: azure;
+    --background: rgb(204, 90, 37);
+}
+
+#container {
+    text-align: center;
+    --background-color: rgb(236, 217, 155);
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#container strong {
+    font-size: 20px;
+    line-height: 26px;
+}
+
+#container p {
+    font-size: 16px;
+    line-height: 22px;
+
+    color: #f70000;
+
+    margin: 0;
+}
+
+#container a {
+    text-decoration: none;
+}

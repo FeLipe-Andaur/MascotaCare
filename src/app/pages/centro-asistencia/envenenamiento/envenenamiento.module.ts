@@ -1,17 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+
 import { IonicModule } from '@ionic/angular';
-import { RegistroMascotaPageRoutingModule } from './registro-mascota-routing.module';
-import { RegistroMascotaPage } from './registro-mascota.page';
+
+import { EnvenenamientoPageRoutingModule } from './envenenamiento-routing.module';
+
+import { EnvenenamientoPage } from './envenenamiento.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    RegistroMascotaPageRoutingModule
+    EnvenenamientoPageRoutingModule
   ],
-  declarations: [RegistroMascotaPage]
+  declarations: [EnvenenamientoPage]
 })
-export class RegistroMascotaModule { }
+export class EnvenenamientoPageModule {}
