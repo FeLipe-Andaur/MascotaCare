@@ -9,32 +9,39 @@ const routes: Routes = [
     component: CentroAsistenciaPage,  // Componente principal de la página
     children: [  // Rutas de los tabs (anidadas)
       {
-        path: 'enfermedades-comunes',
-        loadChildren: () => import('./enfermedades-comunes/enfermedades-comunes.module').then( m => m.EnfermedadesComunesPageModule)
+        path: 'perros',
+        loadChildren: () => import('./perros/perros.module').then( m => m.PerrosPageModule)
       },
       {
-        path: 'lesiones',
-        loadChildren: () => import('./lesiones/lesiones.module').then( m => m.LesionesPageModule)
+        path: 'gatos',
+        loadChildren: () => import('./gatos/gatos.module').then( m => m.GatosPageModule)
+      },
+    
+      {
+        path: 'historial',
+        loadChildren: () => import('./historial/historial.module').then( m => m.HistorialPageModule)
       },
       {
-        path: 'ataques',
-        loadChildren: () => import('./ataques/ataques.module').then( m => m.AtaquesPageModule)
+        path: 'veterinario',
+        loadChildren: () => import('./veterinario/veterinario.module').then( m => m.VeterinarioPageModule)
       },
       {
-        path: 'envenenamiento',
-        loadChildren: () => import('./envenenamiento/envenenamiento.module').then( m => m.EnvenenamientoPageModule)
-      },
-      {
-        path: 'veterinarios-cercanos',
-        loadChildren: () => import('./veterinarios-cercanos/veterinarios-cercanos.module').then( m => m.VeterinariosCercanosPageModule)
+        path: 'menu',
+        loadChildren: () => import('./menu/menu.module').then( m => m.MenuPageModule)
       },
       {
         path: '', // Ruta por defecto
-        redirectTo: '/centro-asistencia/enfermedades-comunes', // Redirigir a la primera tab
+        redirectTo: '/centro-asistencia/perros', // Redirigir a la primera tab
         pathMatch: 'full' 
       }
     ]
-  }
+  },
+  
+
+
+
+
+
 ];
 
 @NgModule({
