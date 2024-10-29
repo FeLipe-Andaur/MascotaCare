@@ -18,19 +18,47 @@
     </ion-card-header>
 
     <ion-card-content>
-      <ion-item>
-        <ion-label position="floating">Usuario</ion-label>
-        <ion-input type="text"></ion-input>
-        <ion-icon slot="end" name="person-outline"></ion-icon>
-      </ion-item>
+      <div class="d-flex-center">
+        <form
+          [formGroup]="form"
+          class="auth-form"
+          (ngSubmit)="submit()"
+          (keypress.enter)="submit()"
+        >
+         <!-- ======Email====== -->
+      <app-custom-input
+      autocomplete="email"
+      [control]="form.controls.email"
+      icon="mail-outline"
+      type="email"
+      label="Email"
+    ></app-custom-input>
+    <!-- ======Email Validator====== -->
+    <div
+      class="validators"
+      *ngIf="form.controls.email.errors && form.controls.email.touched"
+    >
+      <div *ngIf="form.controls.email.errors?.['required']">
+        El correo es requerido
+      </div>
+      <div *ngIf="form.controls.email.errors?.['email']">
+        Ingrese un correo valido
+      </div>
+    </div>
+    <ion-button
+      expand="block"
+      mode="ios"
+      class="submit"
+      type="submit"
+      [disabled]="form.invalid"
+    >
+      Recuperar
+      <ion-icon slot="end" name="arrow-forward"></ion-icon>
+    </ion-button>
+    </form>
+  </div>
 
-
-
-      <ion-row>
-        <ion-col>
-          <ion-button (click)="mostrarAlerta()" expand="block">Recuperar contraseña</ion-button>
-        </ion-col>
-      </ion-row>
+      
       <ion-row class="ion-text-center">
         <ion-col>
           <a routerLink="/auth">¿Ya tienes una cuenta?</a>

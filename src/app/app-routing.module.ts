@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { noAuthGuard } from './guards/no-auth.guard';
+import { authGuard } from './guards/auth.guard';
+
 
 
 const routes: Routes = [
@@ -11,22 +14,25 @@ const routes: Routes = [
   },
   {
     path: 'auth',
-    loadChildren: () => import('./pages/auth/auth.module').then( m => m.AuthPageModule)
+    loadChildren: () => import('./pages/auth/auth.module').then( m => m.AuthPageModule),
+    canActivate: [noAuthGuard],
   },
  
   {
     path: 'home',
     loadChildren: () => import('./pages/home/home.module').then(m => m.SeleccionMascotaModule),
     
+    
   },
   {
     path: 'registro-perros',
     loadChildren: () => import('./pages/registro-perros/registro-perros.module').then(m => m.RegistroPerrosModule),
-    
+    canActivate: [authGuard],
   },
   {
     path: 'registro-gatos',
-    loadChildren: () => import('./pages/registro-gatos/registro-gatos.module').then( m => m.RegistroGatosPageModule)
+    loadChildren: () => import('./pages/registro-gatos/registro-gatos.module').then( m => m.RegistroGatosPageModule),
+    canActivate: [authGuard],
   },
 
   {
@@ -47,9 +53,10 @@ const routes: Routes = [
   },
   {
     path: 'centro-asistencia',
-    loadChildren: () => import('./pages/centro-asistencia/centro-asistencia.module').then( m => m.CentroAsistenciaPageModule)
+    loadChildren: () => import('./pages/centro-asistencia/centro-asistencia.module').then( m => m.CentroAsistenciaPageModule),
+    canActivate: [authGuard],
   },
-  //Siempre va al final, permnite redirigir a una pagina de error
+  //=====Siempre va al final, permnite redirigir a una pagina de error====
   {
     path: '**',
     loadChildren: () => import('./pages/error/error.module').then(m => m.ErrorPageModule)

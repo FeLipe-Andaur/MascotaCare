@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-
 import { AuthPage } from './auth.page';
+import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
@@ -14,7 +13,7 @@ const routes: Routes = [
       import('./register/register.module').then((m) => m.RegisterPageModule),
   },
   {
-    path: 'recovery',
+    path: 'restore',
     loadChildren: () =>
       import('./restore/restore.module').then((m) => m.RestorePageModule),
   },

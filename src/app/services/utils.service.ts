@@ -1,6 +1,7 @@
 import { inject,Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertController, ToastOptions } from '@ionic/angular';
+
+import {AlertController,AlertOptions,LoadingController,ToastController,ToastOptions,} from '@ionic/angular';
 
 
 @Injectable({
@@ -8,9 +9,9 @@ import { AlertController, ToastOptions } from '@ionic/angular';
 })
 export class UtilsService {
   router = inject(Router);
-  loadingCtrl: any;
-  toastCtrl: any;
   alertCtrl = inject(AlertController);
+  loadingCtrl = inject(LoadingController); 
+  toastCtrl = inject(ToastController); 
 
    //======= Router ========
   // Enruta a cualquier pagina.
@@ -27,6 +28,13 @@ export class UtilsService {
     async presentToast(opts?: ToastOptions) {
       const toast = await this.toastCtrl.create(opts);
       toast.present();
+    }
+
+    //=== Alert ===
+    async presentAlert(opts?: AlertOptions){
+      const alert = await this.alertCtrl.create(opts);
+
+      await alert.present();
     }
 
   //========= LocalStorage =========//
