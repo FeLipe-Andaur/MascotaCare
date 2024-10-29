@@ -33,7 +33,7 @@ export class RestorePage {
       buttons: [{
         text: 'OK',
         handler: () => {
-          this.router.navigate(['/login']);
+          this.router.navigate(['/auth']);
         },
       },
       ],

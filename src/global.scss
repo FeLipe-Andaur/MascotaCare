@@ -43,3 +43,25 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import "@ionic/angular/css/palettes/dark.system.css";
+
+ion-button {
+  text-transform: none;
+}
+
+.custom-input {
+  --border-color: #e0e0e0;
+  --border-radius: 15px;
+  --border-style: solid;
+  --border-width: 1px;
+  margin: 20px 0;
+
+  ion-label {
+      position: relative;
+      bottom: 2px;
+  }
+
+  .eye-icon {
+      position: relative;
+      top: 13px;
+  }
+}

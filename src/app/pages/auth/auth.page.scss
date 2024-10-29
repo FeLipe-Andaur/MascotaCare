@@ -8,12 +8,12 @@ ion-content {
 }
 
 ion-card {
-    --background: rgb(133, 24, 71);
+    --background: rgb(133, 89, 24);
     --background: radial-gradient(circle, rgb(212, 72, 133) 0%, rgba(177, 60, 31, 0.865) 0%);
 }
 
 ion-item {
-    --background: rgba(8, 248, 216, 0.014);
+    --background: rgba(103, 28, 224, 0.014);
 
 }
 
@@ -43,7 +43,7 @@ ion-button {
 
 
 .input-with-lock ion-icon {
-    color: #666;
+    color: #ffffff;
     font-size: 20px;
     margin-right: 8px;
     vertical-align: middle;

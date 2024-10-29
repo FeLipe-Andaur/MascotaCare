@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from './guards/auth.guard';
+
 
 const routes: Routes = [
 
@@ -10,18 +10,19 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'login',
-    loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule)
+    path: 'auth',
+    loadChildren: () => import('./pages/auth/auth.module').then( m => m.AuthPageModule)
   },
+ 
   {
     path: 'home',
     loadChildren: () => import('./pages/home/home.module').then(m => m.SeleccionMascotaModule),
-    canActivate: [AuthGuard]
+    
   },
   {
     path: 'registro-perros',
     loadChildren: () => import('./pages/registro-perros/registro-perros.module').then(m => m.RegistroPerrosModule),
-    canActivate: [AuthGuard]
+    
   },
   {
     path: 'registro-gatos',
@@ -30,11 +31,11 @@ const routes: Routes = [
 
   {
     path: 'restore',
-    loadChildren: () => import('./pages/restore/restore.module').then(m => m.RestorePageModule)
+    loadChildren: () => import('./pages/auth/restore/restore.module').then(m => m.RestorePageModule)
   },
   {
     path: 'register',
-    loadChildren: () => import('./pages/register/register.module').then(m => m.RegisterPageModule)
+    loadChildren: () => import('./pages/auth/register/register.module').then(m => m.RegisterPageModule)
   },
   {
     path: 'error',
@@ -54,8 +55,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/error/error.module').then(m => m.ErrorPageModule)
   },
  
-
-
 ];
 
 @NgModule({

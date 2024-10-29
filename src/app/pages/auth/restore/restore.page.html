@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-button routerLink="/login">
+      <ion-button routerLink="/auth">
         <ion-icon name="arrow-undo-outline" slot="icon-only"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -11,7 +11,7 @@
 
 <ion-content [fullscreen]="true">
   <ion-card>
-    <img alt="login" src="assets/img/login.png" />
+    <img alt="auth" src="assets/img/login.png" />
 
     <ion-card-header>
       <ion-card-title class="ion-text-center">Recuperar contraseña</ion-card-title>
@@ -33,7 +33,7 @@
       </ion-row>
       <ion-row class="ion-text-center">
         <ion-col>
-          <a routerLink="/login">¿Ya tienes una cuenta?</a>
+          <a routerLink="/auth">¿Ya tienes una cuenta?</a>
         </ion-col>
       </ion-row>
     </ion-card-content>
