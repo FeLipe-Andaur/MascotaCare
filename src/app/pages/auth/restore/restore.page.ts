@@ -1,44 +1,71 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { Component, inject, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FirebaseService } from 'src/app/services/firebase.service';
+import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
   selector: 'app-restore',
   templateUrl: './restore.page.html',
   styleUrls: ['./restore.page.scss'],
 })
-export class RestorePage {
+export class RestorePage implements OnInit {
+  form = new FormGroup({
+    email: new FormControl('', [Validators.required, Validators.email]),
+  });
 
-  constructor(
-    public alertController: AlertController,
-    private router: Router
-  ) { }
+  firebaseSvc = inject(FirebaseService);
+  utilsSvc = inject(UtilsService);
 
-  //mostrar Alerta 
+  ngOnInit() {}
 
-  mostrarAlerta() {
-    this.presentAlert(
-      'Correo enviado',
-      'Se envio un correo a tu cienta para restablecer tu contraseña'
-    );
+  async submit() {
+    if (this.form.valid) {
+      const loading = await this.utilsSvc.loading();
+      await loading.present();
 
+      const email = this.form.value.email;
+
+      if (email) { 
+        this.firebaseSvc
+          .sendRecoveryEmail(email)
+          .then((res) => {
+            this.utilsSvc.presentToast({
+              message: 'Se ha enviado un correo para recuperar la contraseña',
+              duration: 2500,
+              color: 'success',
+              position: 'middle',
+              icon: 'checkmark-circle-outline',
+            });
+
+            this.utilsSvc.routerLink('/auth');
+            this.form.reset();
+          })
+          .catch((error) => {
+            console.log(error);
+            this.utilsSvc.presentToast({
+              message: error.message,
+              duration: 2500,
+              color: 'dark',
+              position: 'middle',
+              icon: 'alert-circle-outline',
+            });
+          })
+          .finally(() => {
+            loading.dismiss();
+          });
+      } else {
+       
+        console.log("El email es inválido");
+        
+        this.utilsSvc.presentToast({
+          message: 'El email es inválido',
+          duration: 2500,
+          color: 'danger',
+          position: 'middle',
+          icon: 'alert-circle-outline',
+        });
+        loading.dismiss(); 
+      }
+    }
   }
-
-
-  //Crear Alerta
-  async presentAlert(msgHeader: string, msg: string) {
-    const alert = await this.alertController.create({
-      header: msgHeader,
-      message: msg,
-      buttons: [{
-        text: 'OK',
-        handler: () => {
-          this.router.navigate(['/auth']);
-        },
-      },
-      ],
-    });
-    await alert.present();
-  }
-
 }

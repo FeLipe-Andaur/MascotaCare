@@ -10,9 +10,6 @@ import { UtilsService } from 'src/app/services/utils.service';
   styleUrls: ['./register.page.scss'],
 })
 export class RegisterPage implements OnInit {
-registrarseAlert() {
-throw new Error('Method not implemented.');
-}
   form = new FormGroup({
     uid: new FormControl(''),
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -30,60 +27,61 @@ throw new Error('Method not implemented.');
       const loading = await this.utilsSvc.loading();
       await loading.present();
 
-     this.firebaseSvc.singUp(this.form.value as User).then(async(res)=>{
-       await this.firebaseSvc.updateUser(this.form.value.name);
+      this.firebaseSvc.singUp(this.form.value as User).then(async (res) =>{
+        await this.firebaseSvc.updateUser(this.form.value.name);
 
-       let uid = res.user.uid;
-          this.form.controls.uid.setValue(uid);
+        let uid = res.user.uid;
+        this.form.controls.uid.setValue(uid);
 
-          this.setUserInfo(uid);
-     }).catch((error)=>{
-       console.log(error);
-       this.utilsSvc.presentToast({
-
-        message:error.message,
-        duration:2500,
-        color:'dark',
-        position:'middle',
-        icon:'alert-circle-outline'
-
-
-       })
-     }).finally(()=>{
-      loading.dismiss();
-     })
-       
+        this.setUserInfo(uid);
+      })
+        .catch((error) => {
+          console.log(error);
+          this.utilsSvc.presentToast({
+            message: error.message,
+            duration: 2500,
+            color: 'dark',
+            position: 'middle',
+            icon: 'alert-circle-outline',
+          });
+        })
+        .finally(() => {
+          loading.dismiss();
+        });
     }
   }
-   //Obtener datos de Usuario
-   async setUserInfo(uid:string){
-    if(this.form.valid){
-      const loading= await this.utilsSvc.loading();
+
+  //Obtener datos del usuario
+  async setUserInfo(uid: string) {
+    if (this.form.valid) {
+      const loading = await this.utilsSvc.loading();
       await loading.present();
 
-      let path = 'users/${uid}';
+      let path = `users/${uid}`;
 
-      //Eliminar contraseña de BD
+      //Eliminar la contraseña de la bd
       delete this.form.value.password;
 
-      this.firebaseSvc.setDocument(path,this.form.value).then(async(res) =>{
-        this.utilsSvc.saveInLocalStorage('user', this.form.value)
-        this.utilsSvc.routerLink('/main/home')
-        this.form.reset();
-      }).catch((error) => {
-        console.log(error);
-        this.utilsSvc.presentToast({
-          message: error.message,
-          duration: 2500,
-          color: 'danger',
-          position: 'middle',
-          icon: 'alert-circle-outline',
+      this.firebaseSvc
+        .setDocument(path, this.form.value)
+        .then(async (res) => {
+          this.utilsSvc.saveInLocalStorage('user', this.form.value);
+          this.utilsSvc.routerLink('/auth');
+          this.form.reset();
+        })
+        .catch((error) => {
+          console.log(error);
+          this.utilsSvc.presentToast({
+            message: error.message,
+            duration: 2500,
+            color: 'danger',
+            position: 'middle',
+            icon: 'alert-circle-outline',
+          });
+        })
+        .finally(() => {
+          loading.dismiss();
         });
-      })
-      .finally(() => {
-        loading.dismiss();
-      });
-
     }
-   }
+  }
 }

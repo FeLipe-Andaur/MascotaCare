@@ -17,17 +17,77 @@ export class AuthPage implements OnInit {
 
   firebaseSvc = inject(FirebaseService);
   utilsSvc = inject(UtilsService);
+ 
 
   ngOnInit() {}
 
-  // Comprobar si el login devuelve los datos
-
-  submit(){
-    if(this.form.valid){
-      this.firebaseSvc.singIn(this.form.value as User).then((res) =>{
-        console.log(res);
-      });
-    }
-  }  
   
+ //===Inicio de Sesión
+
+async submit(){
+  if(this.form.valid){
+    const loading = await this.utilsSvc.loading();
+    await loading.present();
+
+    this.firebaseSvc.singIn(this.form.value as User).then((res) =>{
+      this.getUserInfo(res.user.uid);
+    }).catch((error) =>{
+      console.log(error);
+      this.utilsSvc.presentToast({
+        message: error.message,
+        duration: 2500,
+        color:'dark',
+        position:'middle',
+        icon:'alert-circle-outline',
+      });
+    }).finally(() =>{
+      loading.dismiss();
+    });
+  }
+}
+    //==== Obtener datos del usuario, aplicacion del loading y del ===
+
+    async getUserInfo(uid: string) {
+      if (this.form.valid) {
+        const loading = await this.utilsSvc.loading();
+        await loading.present();
+    
+        const path = `users/${uid}`;
+    
+        this.firebaseSvc
+          .getDocument(path)
+          .then((data) => {
+            if (data) { // Verificamos si data no es undefined
+              const user = data as User; // Hacemos un casting a User si estamos seguros de que es del tipo correcto
+              this.utilsSvc.saveInLocalStorage('user', user);
+              this.utilsSvc.routerLink('/home');
+              this.form.reset();
+    
+              this.utilsSvc.presentToast({
+                message: `Te damos la bienvenida ${user.name}`,
+                duration: 1500,
+                color: 'dark',
+                position: 'middle',
+                icon: 'person-circle-outline',
+              });
+            } else {
+              throw new Error("Usuario no encontrado.");
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+            this.utilsSvc.presentToast({
+              message: error.message,
+              duration: 2500,
+              color: 'danger',
+              position: 'middle',
+              icon: 'alert-circle-outline',
+            });
+          })
+          .finally(() => {
+            loading.dismiss();
+          });
+      }
+    }
+    
 }

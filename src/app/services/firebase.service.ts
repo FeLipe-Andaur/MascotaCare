@@ -12,6 +12,7 @@ import {getStorage,uploadString,ref,getDownloadURL,deleteObject,} from 'firebase
   providedIn: 'root'
 })
 export class FirebaseService {
+  signIn: any;
   updateUser(name: string | null | undefined) {
     throw new Error('Method not implemented.');
   }
