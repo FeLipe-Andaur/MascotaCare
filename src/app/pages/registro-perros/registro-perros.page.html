@@ -13,36 +13,36 @@
 <br>
 <ion-content [fullscreen]="true" alt="login"
   style="--background: url('/assets/img/fondoMascota.png') no-repeat center/cover;">
-
+  
   <br>
-
+  
   <ion-item>
     <ion-input label="Nombre" labelPlacement="floating" [(ngModel)]="data.nombre"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-select label="Genero" labelPlacement="floating" placeholder="Seleccione" [(ngModel)]="data.genero">
+    <ion-select label="Género" labelPlacement="floating" placeholder="Seleccione" [(ngModel)]="data.genero">
       <ion-select-option *ngFor="let g of genero" [value]="g.id">{{g.nombreGenero}}</ion-select-option>
     </ion-select>
   </ion-item>
   <ion-item>
-    <ion-select label="vacunas al día" labelPlacement="floating" placeholder="Seleccione" [(ngModel)]="data.vacuna">
-      <ion-select-option *ngFor="let v of vacuna" [value]="v.id">{{v.nombreVacuna}}</ion-select-option>
+    <ion-select label="Vacunas al día" labelPlacement="floating" placeholder="Seleccione" [(ngModel)]="data.vacuna">
+      <ion-select-option value="1">Sí</ion-select-option>
+      <ion-select-option value="0">No</ion-select-option>
     </ion-select>
   </ion-item>
   <ion-item>
-    <ion-select label="Raza" label-placement="floating" placeholder="Seleccione" [(ngModel)]="data.raza">
+    <ion-select label="Raza" labelPlacement="floating" placeholder="Seleccione" [(ngModel)]="data.raza">
       <ion-select-option *ngFor="let r of raza" [value]="r.id">{{r.nombreRaza}}</ion-select-option>
     </ion-select>
   </ion-item>
   <ion-item>
-    <ion-input label="Fecha de Nacimiento" labelPlacement="floating" type="date"
-      [(ngModel)]="data.fecNacimiento"></ion-input>
+    <ion-input label="Fecha de Nacimiento" labelPlacement="floating" type="date" [(ngModel)]="data.fecNacimiento"></ion-input>
   </ion-item>
   <ion-grid [fixed]="true">
     <ion-row>
       <ion-col><ion-button shape="block" (click)="limpiar()">Limpiar</ion-button></ion-col>
       <ion-col><ion-button shape="block" (click)="mostrar()">Mostrar</ion-button></ion-col>
-      <ion-col><ion-button shape="block" (click)="mostrar()">Ingresar</ion-button></ion-col>
+      <ion-col><ion-button shape="block" (click)="ingresar()">Ingresar</ion-button></ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>
