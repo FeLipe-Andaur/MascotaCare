@@ -69,7 +69,7 @@ export class SeleccionMascota implements AfterViewInit {
       buttons: [{
         text: 'OK',
         handler: () => {
-          this.router.navigate(['/login']);
+          this.router.navigate(['/auth']);
         },
       },
       ],
