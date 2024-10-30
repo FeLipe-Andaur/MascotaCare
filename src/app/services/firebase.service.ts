@@ -13,9 +13,7 @@ import {getStorage,uploadString,ref,getDownloadURL,deleteObject,} from 'firebase
 })
 export class FirebaseService {
   signIn: any;
-  updateUser(name: string | null | undefined) {
-    throw new Error('Method not implemented.');
-  }
+
   auth = inject(AngularFireAuth);
   utilsSvc = inject(UtilsService);
   firestore = inject(AngularFirestore);
@@ -42,8 +40,16 @@ export class FirebaseService {
   }
 
   //----Actualizar perfil----
- 
-  
+  async updateUser(displayName: string | null | undefined) { 
+    const user = getAuth().currentUser;
+    if (user) {
+      const name = displayName || "Usuario"; 
+      return updateProfile(user, { displayName: name }); 
+    } else {
+      console.error("No hay ningún usuario conectado.");
+      throw new Error("No hay ningún usuario conectado.");
+    }
+  }
 
    //------ Enviar correo de recuperacion ------
    sendRecoveryEmail(email: string) {
