@@ -1,15 +1,18 @@
 import { inject,Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
-import {AlertController,AlertOptions,LoadingController,ToastController,ToastOptions,} from '@ionic/angular';
+import {AlertController,AlertOptions,LoadingController, ModalController,
+  ModalOptions,ToastController,ToastOptions,} from '@ionic/angular';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class UtilsService {
+ 
   router = inject(Router);
   alertCtrl = inject(AlertController);
+  modalCtrl = inject(ModalController);
   loadingCtrl = inject(LoadingController); 
   toastCtrl = inject(ToastController); 
 
@@ -36,6 +39,20 @@ export class UtilsService {
 
       await alert.present();
     }
+
+    //===== Modal =====//
+  async presentModal(opts: ModalOptions) {
+    const modal = await this.modalCtrl.create(opts);
+
+    await modal.present();
+
+    const { data } = await modal.onWillDismiss();
+    if (data) return data;
+  }
+
+  dismissModal(data?: any) {
+    return this.modalCtrl.dismiss(data);
+  }
 
   //========= LocalStorage =========//
   // Guardar en local storage

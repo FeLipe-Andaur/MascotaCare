@@ -1,3 +1,40 @@
-<p>
-  header works!
-</p>
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button *ngIf="backButton" [defaultHref]="backButton"></ion-back-button>
+      <ion-button (click)="dismissModal()" *ngIf="isModal">
+        <ion-icon name="close-circle-outline"></ion-icon>
+      </ion-button>
+      <ion-menu-button *ngIf="showMenu" menu="menu-content"></ion-menu-button> 
+    </ion-buttons>
+    <ion-title>
+      <strong>{{ title }}</strong>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-menu contentId="menu-content" menuId="menu-content" side="start"> 
+  <ion-content class="ion-text-center">
+    <ion-avatar>
+      <img *ngIf="user()?.image" [src]="user()?.image" />
+      <ion-icon *ngIf="!user()?.image" class="empty-icon" name="person-circle-outline"></ion-icon>
+    </ion-avatar>
+    <ion-menu-toggle auto-hide="false" *ngFor="let p of pages">
+      <ion-item [ngClass]="{active: currentPath === p.url}" [routerLink]="p.url" routerDirection="root" detail>
+        <ion-icon slot="start" [name]="p.icon"></ion-icon>
+        <ion-label>{{ p.title }}</ion-label>
+      </ion-item>
+    </ion-menu-toggle>
+  </ion-content>
+
+  <ion-footer class="ion-no-border safe-p-bottom">
+    <ion-menu-toggle auto-hide="false">
+      <ion-item button (click)="signOut()" lines="none">
+        <ion-icon slot="start" name="log-out-outline"></ion-icon>
+        <ion-label>Cerrar sesion</ion-label>
+      </ion-item>
+    </ion-menu-toggle>
+  </ion-footer>
+</ion-menu>
+
+<ion-router-outlet id="menu-content" main></ion-router-outlet>

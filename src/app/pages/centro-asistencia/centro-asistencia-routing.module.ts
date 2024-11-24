@@ -25,10 +25,7 @@ const routes: Routes = [
         path: 'veterinario',
         loadChildren: () => import('./veterinario/veterinario.module').then( m => m.VeterinarioPageModule)
       },
-      {
-        path: 'menu',
-        loadChildren: () => import('./menu/menu.module').then( m => m.MenuPageModule)
-      },
+     
       {
         path: '', // Ruta por defecto
         redirectTo: '/centro-asistencia/perros', // Redirigir a la primera tab
