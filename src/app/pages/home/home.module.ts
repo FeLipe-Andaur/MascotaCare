@@ -5,6 +5,8 @@ import { IonicModule } from '@ionic/angular';
 import { RouterModule, Routes } from '@angular/router';
 import { SeleccionMascotaRoutingModule } from './home-routing.module';
 import { SeleccionMascota } from './home.page';
+import { SharedModule } from 'src/app/shared/shared.module';
+
 
 const routes: Routes = [
   {
@@ -14,7 +16,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes), IonicModule, CommonModule, FormsModule, SeleccionMascotaRoutingModule],
+  imports: [RouterModule.forChild(routes), IonicModule, CommonModule, FormsModule, SeleccionMascotaRoutingModule,SharedModule,],
   declarations: [SeleccionMascota]
 
 })

@@ -1,6 +1,6 @@
-import { Component, AfterViewInit, ViewChildren, QueryList, ElementRef } from '@angular/core';
+import { Component, AfterViewInit, ViewChildren, QueryList, ElementRef, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NavController, AnimationController, AlertController, } from '@ionic/angular';
+import { NavController, AnimationController, AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -12,18 +12,19 @@ export class SeleccionMascota implements AfterViewInit {
   login: any;
 
   constructor(
-    public alertController: AlertController, private navCtrl: NavController,
-    private animationController: AnimationController, private router: Router,
-    private activatedRoute: ActivatedRoute) {
-
-    //informacion del login
+    public alertController: AlertController,
+    private navCtrl: NavController,
+    private animationController: AnimationController,
+    private router: Router = inject(Router), // Inyecta Router aquí
+    private activatedRoute: ActivatedRoute
+  ) {
+    // Información del login
     this.activatedRoute.queryParams.subscribe((params) => {
       if (this.router.getCurrentNavigation()?.extras.state) {
         this.login = this.router.getCurrentNavigation()?.extras?.state?.['login'];
-        //mostrar en cosnola
         console.log(this.login);
       }
-    })
+    });
   }
 
   seleccionarMascota(tipoMascota: string) {
@@ -51,17 +52,15 @@ export class SeleccionMascota implements AfterViewInit {
     });
   }
 
-  //mostrar Alerta 
-
+  // Mostrar Alerta
   cerrarSesionAlert() {
     this.presentAlert(
-      'Cerrrar Sesion :',
+      'Cerrar Sesion :',
       'Sesion cerrada correctamente'
     );
-
   }
 
-  //Crear Alerta
+  // Crear Alerta
   async presentAlert(msgHeader: string, msg: string) {
     const alert = await this.alertController.create({
       header: msgHeader,
@@ -71,10 +70,8 @@ export class SeleccionMascota implements AfterViewInit {
         handler: () => {
           this.router.navigate(['/auth']);
         },
-      },
-      ],
+      }],
     });
     await alert.present();
   }
-
 }

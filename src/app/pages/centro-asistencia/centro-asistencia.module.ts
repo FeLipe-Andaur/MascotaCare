@@ -14,8 +14,9 @@ import { CentroAsistenciaPage } from './centro-asistencia.page';
     FormsModule,
     IonicModule,
     CentroAsistenciaPageRoutingModule,
-    FontAwesomeModule 
+    FontAwesomeModule,
+    CentroAsistenciaPage 
   ],
-  declarations: [CentroAsistenciaPage]
+  declarations: []
 })
 export class CentroAsistenciaPageModule {}

@@ -6,6 +6,7 @@ import { CustomInputComponent } from './components/custom-input/custom-input.com
 import { CustomCardComponent } from './components/custom-card/custom-card.component';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -13,7 +14,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   declarations: [HeaderComponent, FooterComponent, CustomInputComponent, CustomCardComponent, CustomCardComponent,],
   exports:[HeaderComponent, FooterComponent, CustomInputComponent, CustomCardComponent, CustomCardComponent, FormsModule, ReactiveFormsModule],
   imports: [
-    CommonModule, IonicModule, ReactiveFormsModule, FormsModule
+    CommonModule, IonicModule, ReactiveFormsModule, FormsModule, RouterModule,
   ]
 })
 export class SharedModule { }

@@ -1,18 +1,8 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-button (click)="cerrarSesionAlert()">
-        <ion-icon name="arrow-undo-outline" slot="icon-only"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-    <ion-title>
-      Bienvenido 
-    </ion-title>
-  </ion-toolbar>
+
+<app-header title="Seleccione su Mascota" [showMenu]="true"></app-header>
+<ion-router-outlet id="menu-content" main></ion-router-outlet>
 
 
-</ion-header>
-<h5 class="ion-text-center">Seleccione su Mascota</h5>
 <ion-content class="ion-padding" style="--background: url('/assets/img/fondoMascota.png') no-repeat center/cover;">
   <div class="centered-content">
     <ion-grid>

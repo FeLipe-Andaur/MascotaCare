@@ -11,9 +11,9 @@ import { UtilsService } from 'src/app/services/utils.service';
 })
 export class RegistroPerrosPage {
   raza: any[] = [
-    { id: 1, nombreRaza: "Labrador" },
-    { id: 2, nombreRaza: "Bulldog" },
-    { id: 3, nombreRaza: "Beagle" },
+    { id: 1, nombreRaza: "Yorshire terrier" },
+    { id: 2, nombreRaza: "Labrador" },
+    { id: 3, nombreRaza: "Husky" },
     { id: 4, nombreRaza: "Poodle" },
     { id: 5, nombreRaza: "Otro" },
   ];

@@ -56,11 +56,21 @@ export class FirebaseService {
     return sendPasswordResetEmail(getAuth(), email)
   }
 
-  //------ Cerrar sesión ------
-  signOut() {
-    getAuth().signOut();
-    localStorage.removeItem('user');
-    this.utilsSvc.routerLink('/auth')
+  // Cerrar sesión 
+  signOut(): Promise<void> {  // <--  Devuelve una promesa
+    return new Promise<void>((resolve, reject) => { // <--  Crea una nueva promesa
+      getAuth().signOut()
+        .then(() => {
+          localStorage.removeItem('user');
+          this.utilsSvc.routerLink('/auth');
+          resolve(); // <-- Resuelve la promesa
+        })
+        .catch((error) => {
+          // Manejo de errores si es necesario
+          console.error("Error al cerrar sesión:", error);
+          reject(error); // <-- Rechaza la promesa en caso de error
+        });
+    });
   }
 
   //===== Base de datos=====
