@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { faDog, faCat, faBars, faLocationDot, faFileWaveform } from '@fortawesome/free-solid-svg-icons';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { IonTabBar } from "@ionic/angular/standalone";
+
 import { IonicModule } from '@ionic/angular';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
@@ -10,7 +10,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   templateUrl: './centro-asistencia.page.html',
   styleUrls: ['./centro-asistencia.page.scss'],
   standalone: true,  
-  imports: [IonTabBar, 
+  imports: [ 
     SharedModule, 
     IonicModule,
     FontAwesomeModule

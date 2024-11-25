@@ -92,12 +92,33 @@ export class RegistroGatosPage {
   async ingresar() {
     if (this.data.nombre && this.data.genero && this.data.esterilizado && this.data.raza && this.data.fecNacimiento) {
       try {
-        // Guarda la información en Firebase
-        await this.firebaseService.addDocument('cats', this.data);
+        // Obtiene el nombre de la raza a partir del ID
+        const razaSeleccionada = this.raza.find(r => r.id === this.data.raza);
+        const nombreRaza = razaSeleccionada ? razaSeleccionada.nombreRaza : this.data.otraRaza || 'Raza desconocida'; 
   
-        // Muestra un mensaje de éxito
+        // Obtiene el nombre del género a partir del ID
+        const generoSeleccionado = this.genero.find(g => g.id === this.data.genero);
+        const nombreGenero = generoSeleccionado ? generoSeleccionado.nombreGenero : 'Género desconocido';
+  
+        // Obtiene el nombre de esterilizado a partir del ID
+        const esterilizadoSeleccionado = this.esterilizado.find(e => e.id === this.data.esterilizado);
+        const nombreEsterilizado = esterilizadoSeleccionado ? esterilizadoSeleccionado.nombreEsterilizado : 'No especificado'; 
+  
+        // Crea un nuevo objeto con los datos que se guardarán en Firebase
+        const dataParaGuardar = {
+          nombre: this.data.nombre,
+          genero: nombreGenero, // Guarda el nombre del género
+          esterilizado: nombreEsterilizado, // Guarda "Sí" o "No"
+          raza: nombreRaza,   // Guarda el nombre de la raza
+          fecNacimiento: this.data.fecNacimiento
+        };
+  
+        // Guarda la información en Firebase
+        await this.firebaseService.addDocument('cats', dataParaGuardar);
+  
+        // Muestra un mensaje de éxito con la información del gato 
         await this.utilsService.presentToast({
-          message: 'Información del gato guardada con éxito',
+          message: `Información del gato guardada con éxito: Nombre: ${this.data.nombre} | Género: ${nombreGenero}`,
           duration: 2000,
           color: 'success'
         });
