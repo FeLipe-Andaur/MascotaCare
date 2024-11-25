@@ -75,21 +75,38 @@ export class RegistroPerrosPage {
   async ingresar() {
     if (this.data.nombre && this.data.genero && this.data.vacuna && this.data.raza && this.data.fecNacimiento) {
       try {
+        // Obtiene el nombre de la raza a partir del ID
+        const razaSeleccionada = this.raza.find(r => r.id === this.data.raza);
+        const nombreRaza = razaSeleccionada ? razaSeleccionada.nombreRaza : 'Raza desconocida';
+  
+        // Obtiene el nombre del género a partir del ID
+        const generoSeleccionado = this.genero.find(g => g.id === this.data.genero);
+        const nombreGenero = generoSeleccionado ? generoSeleccionado.nombreGenero : 'Género desconocido';
+  
+        // Crea un nuevo objeto con los datos que se guardarán en Firebase
+        const dataParaGuardar = {
+          nombre: this.data.nombre,
+          genero: nombreGenero, // Guarda el nombre del género
+          vacuna: this.data.vacuna === "1" ? "Sí" : "No", // Guarda "Sí" o "No"
+          raza: nombreRaza,   // Guarda el nombre de la raza
+          fecNacimiento: this.data.fecNacimiento
+        };
+  
         // Guarda la información en Firebase
-        await this.firebaseService.addDocument('dogs', this.data);
-
-        // Muestra un mensaje de éxito
+        await this.firebaseService.addDocument('dogs', dataParaGuardar);
+  
+        // Muestra un mensaje de éxito con la información del perro (CORREGIDO)
         await this.utilsService.presentToast({
-          message: 'Información del perro guardada con éxito',
+          message: `Información del perro guardada con éxito: Nombre: ${this.data.nombre} | Género: ${nombreGenero} `,
           duration: 2000,
           color: 'success'
         });
-
+  
         // Redirige a la página "tab centro-veterinario"
         this.utilsService.routerLink('/centro-asistencia/perros');
       } catch (error) {
         console.error('Error al guardar la información:', error);
-
+  
         // Muestra un mensaje de error
         await this.utilsService.presentToast({
           message: 'Error al guardar la información',
