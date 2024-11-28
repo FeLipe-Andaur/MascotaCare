@@ -7,7 +7,7 @@ import { NavController, AnimationController, AlertController } from '@ionic/angu
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class SeleccionMascota implements AfterViewInit {
+export class Home implements AfterViewInit {
   @ViewChildren('card', { read: ElementRef }) cardElements!: QueryList<ElementRef>;
   login: any;
 

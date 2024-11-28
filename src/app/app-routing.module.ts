@@ -20,10 +20,16 @@ const routes: Routes = [
  
   {
     path: 'home',
-    loadChildren: () => import('./pages/home/home.module').then(m => m.SeleccionMascotaModule),
+    loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule),
     canActivate: [authGuard],
     
   },
+  {
+    path: 'profile',
+    loadChildren: () => import('./pages/profile/profile.module').then( m => m.ProfilePageModule),
+    canActivate: [authGuard],
+  },
+  
   {
     path: 'registro-perros',
     loadChildren: () => import('./pages/registro-perros/registro-perros.module').then(m => m.RegistroPerrosModule),
@@ -61,6 +67,10 @@ const routes: Routes = [
     path: '**',
     loadChildren: () => import('./pages/error/error.module').then(m => m.ErrorPageModule)
   },
+
+
+  
+
  
 ];
 
