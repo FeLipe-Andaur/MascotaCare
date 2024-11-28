@@ -19,19 +19,16 @@ export class HeaderComponent implements OnInit {
   pages = [
     {
       title: 'Inicio',
-      url: '/home/home',
+      url: '/home',
       icon: 'home-outline',
     },
     {
       title: 'Perfil',
-      url: '/home/profile',
+      url: '/profile',
       icon: 'person-outline',
+      
     },
-    {
-      title: 'Centro de Asistencia',
-      url: '/centro-asistencia',
-      icon: 'medkit-outline',
-    },
+   
   ];
 
   router = inject(Router);
