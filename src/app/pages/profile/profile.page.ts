@@ -72,5 +72,5 @@ export class ProfilePage implements OnInit {
     } finally {
       loading.dismiss();
     }
-  } // <- Asegúrate de que esta llave cierre el método
+  } 
 }

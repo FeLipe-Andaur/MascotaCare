@@ -13,7 +13,7 @@ import { SharedModule } from 'src/app/shared/shared.module'; // <-- Importa Shar
     FormsModule,
     IonicModule,
     ProfilePageRoutingModule,
-    SharedModule // <-- Agrega SharedModule a los imports
+    SharedModule 
   ],
   declarations: [ProfilePage]
 })

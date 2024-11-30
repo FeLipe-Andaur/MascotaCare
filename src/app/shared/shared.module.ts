@@ -7,12 +7,13 @@ import { CustomCardComponent } from './components/custom-card/custom-card.compon
 import { IonicModule } from '@ionic/angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { AddUpdatePetComponent } from './components/add-update-pet/add-update-pet.component';
 
 
 
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent, CustomInputComponent, CustomCardComponent, CustomCardComponent,],
-  exports:[HeaderComponent, FooterComponent, CustomInputComponent, CustomCardComponent, CustomCardComponent, FormsModule, ReactiveFormsModule],
+  declarations: [HeaderComponent, FooterComponent, CustomInputComponent, CustomCardComponent, CustomCardComponent,AddUpdatePetComponent,],
+  exports:[HeaderComponent, FooterComponent, CustomInputComponent, CustomCardComponent, CustomCardComponent, FormsModule, ReactiveFormsModule,AddUpdatePetComponent,],
   imports: [
     CommonModule, IonicModule, ReactiveFormsModule, FormsModule, RouterModule,
   ]

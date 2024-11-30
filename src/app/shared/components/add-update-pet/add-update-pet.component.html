@@ -1,0 +1,96 @@
+<ion-content>
+  <form [formGroup]="form" class="ion-padding ion-text-center" (ngSubmit)="submit()" (keypress.enter)="submit()">
+
+    <ion-avatar *ngIf="form.value.image">
+      <img [src]="form.value.image" />
+    </ion-avatar>
+    <ion-icon
+      class="image-icon"
+      *ngIf="!form.value.image"
+      name="image-outline"
+    ></ion-icon>
+    <br />
+    <ion-button (click)="takeImage()" size="small" mode="ios" shape="round">
+      Tomar/Seleccionar
+    </ion-button>
+
+    <app-custom-input
+      autocomplete="name"
+      [control]="form.controls.name"
+      type="name"
+      label="Nombre"
+    ></app-custom-input>
+    <div *ngIf="form.controls.name.errors && form.controls.name.touched" class="validators">
+      <div *ngIf="form.controls.name.errors?.['required']">El nombre es requerido</div>
+      <div *ngIf="form.controls.name.errors?.['minlength']">El nombre debe tener al menos 2 caracteres</div>
+    </div>
+
+    <app-custom-input
+      [control]="form.controls.age"
+      type="number"
+      label="Edad"
+      (ionInput)="setNumberInputs()"
+    ></app-custom-input>
+    <div *ngIf="form.controls.age.errors && form.controls.age.touched" class="validators">
+      <div *ngIf="form.controls.age.errors?.['required']">Este campo es requerido</div>
+      <div *ngIf="form.controls.age.errors?.['min']">La edad mínima debe ser 0</div>
+    </div>
+
+    <app-custom-input
+      [control]="form.controls.weight"
+      type="number"
+      label="Peso (kg)"
+      (ionInput)="setNumberInputs()"
+    ></app-custom-input>
+    <div *ngIf="form.controls.weight.errors && form.controls.weight.touched" class="validators">
+      <div *ngIf="form.controls.weight.errors?.['required']">Este campo es requerido</div>
+      <div *ngIf="form.controls.weight.errors?.['min']">El peso mínimo debe ser 0</div>
+    </div>
+
+    <app-custom-input
+      [control]="form.controls.raza"
+      type="text"
+      label="Raza"
+    ></app-custom-input>
+    <div *ngIf="form.controls.raza.errors && form.controls.raza.touched" class="validators">
+      <div *ngIf="form.controls.raza.errors?.['required']">La raza es requerida</div>
+    </div>
+
+    <ion-item>
+      <ion-label>Especie:</ion-label>
+      <ion-select formControlName="especie" interface="popover">
+        <ion-select-option value="perro">Perro</ion-select-option>
+        <ion-select-option value="gato">Gato</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Vacuna:</ion-label>
+      <ion-toggle formControlName="vacuna"></ion-toggle>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Esterilizado:</ion-label>
+      <ion-toggle formControlName="esterilizado"></ion-toggle>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Próxima Visita:</ion-label>
+      <ion-input
+        formControlName="proximaVisita"
+        type="text"
+        placeholder="YYYY-MM-DD"
+      ></ion-input>
+    </ion-item>
+
+    <ion-button
+      mode="ios"
+      class="ion-margin"
+      type="submit"
+      [disabled]="form.invalid"
+    >
+      {{ pet ? "Actualizar Mascota" : "Agregar Mascota" }}
+      <ion-icon slot="end" name="checkmark-circle-outline"></ion-icon>
+    </ion-button>
+  </form>
+</ion-content>

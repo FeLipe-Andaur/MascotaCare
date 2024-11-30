@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { User } from 'src/app/models/user.model';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { UtilsService } from 'src/app/services/utils.service';
+import { MenuController } from '@ionic/angular'; // Importa MenuController
 
 @Component({
   selector: 'app-header',
@@ -28,7 +29,12 @@ export class HeaderComponent implements OnInit {
       icon: 'person-outline',
       
     },
-   
+    {
+      title: 'Centro de Asistencia',
+      url: '/centro-asistencia', 
+      icon: 'medkit-outline', 
+    },
+    
   ];
 
   router = inject(Router);
@@ -36,6 +42,10 @@ export class HeaderComponent implements OnInit {
   utilsSvc = inject(UtilsService);
   currentPath: string = '';
   // =============================
+
+  constructor(
+    private menuCtrl: MenuController // Inyecta MenuController
+  ) {}
 
   ngOnInit() {
     // Inicialización del menú
@@ -59,5 +69,10 @@ export class HeaderComponent implements OnInit {
     this.firebaseSvc.signOut().then(() => {
       this.router.navigate(['/auth']);
     });
+  }
+
+  // Método para abrir el menú
+  openMenu() {
+    this.menuCtrl.open('menu-content');
   }
 }
