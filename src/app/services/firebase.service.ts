@@ -1,12 +1,35 @@
 import { inject, Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { AngularFirestore} from '@angular/fire/compat/firestore';
-import { AngularFireStorage} from '@angular/fire/compat/storage';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { UtilsService } from './utils.service';
-import {createUserWithEmailAndPassword, getAuth, updateProfile, sendPasswordResetEmail, signInWithEmailAndPassword, } from 'firebase/auth';
+import { 
+  createUserWithEmailAndPassword, 
+  getAuth, 
+  updateProfile, 
+  sendPasswordResetEmail, 
+  signInWithEmailAndPassword 
+} from 'firebase/auth';
 import { User } from '../models/user.model';
-import {getFirestore,setDoc,doc,getDoc,addDoc,collection,collectionData,query,updateDoc,deleteDoc,} from '@angular/fire/firestore';
-import {getStorage,uploadString,ref,getDownloadURL,deleteObject,} from 'firebase/storage';
+import { 
+  getFirestore, 
+  setDoc, 
+  doc, 
+  getDoc, 
+  addDoc, 
+  collection, 
+  collectionData, 
+  query, 
+  updateDoc, 
+  deleteDoc 
+} from '@angular/fire/firestore';
+import { 
+  getStorage, 
+  uploadString, 
+  ref, 
+  getDownloadURL, 
+  deleteObject 
+} from 'firebase/storage';
 
 @Injectable({
   providedIn: 'root'
@@ -21,25 +44,25 @@ export class FirebaseService {
 
   //==== Autenticación ====
 
-  //----Obtener instancia de autenticación para guards----
+  //---- Obtener instancia de autenticación para guards ----
 
-  getAuth(){
+  getAuth() {
     return getAuth();
   }
 
   //---- Iniciar sesión ----
 
-  singIn(user: User){
-    return signInWithEmailAndPassword(getAuth(), user.email, user.password)
+  singIn(user: User) {
+    return signInWithEmailAndPassword(getAuth(), user.email, user.password);
   }
 
-  //-----Registrar usuario----
+  //----- Registrar usuario ----
 
-  singUp(user: User){
-    return createUserWithEmailAndPassword(getAuth(), user.email, user.password)
+  singUp(user: User) {
+    return createUserWithEmailAndPassword(getAuth(), user.email, user.password);
   }
 
-  //----Actualizar perfil----
+  //---- Actualizar perfil ----
   async updateUser(displayName: string | null | undefined) { 
     const user = getAuth().currentUser;
     if (user) {
@@ -51,77 +74,87 @@ export class FirebaseService {
     }
   }
 
-   //------ Enviar correo de recuperacion ------
-   sendRecoveryEmail(email: string) {
-    return sendPasswordResetEmail(getAuth(), email)
+  //------ Enviar correo de recuperación ------
+  sendRecoveryEmail(email: string) {
+    return sendPasswordResetEmail(getAuth(), email);
   }
 
   // Cerrar sesión 
-  signOut(): Promise<void> {  // <--  Devuelve una promesa
-    return new Promise<void>((resolve, reject) => { // <--  Crea una nueva promesa
+  signOut(): Promise<void> {
+    return new Promise<void>((resolve, reject) => {
       getAuth().signOut()
         .then(() => {
           localStorage.removeItem('user');
           this.utilsSvc.routerLink('/auth');
-          resolve(); // <-- Resuelve la promesa
+          resolve();
         })
         .catch((error) => {
-          // Manejo de errores si es necesario
           console.error("Error al cerrar sesión:", error);
-          reject(error); // <-- Rechaza la promesa en caso de error
+          reject(error);
         });
     });
   }
 
-  //===== Base de datos=====
+  //===== Base de datos =====
 
-  //***** Documentos de una Colección****  
-    getCollectionData(path: string, collectionQuery?: any) {
-      const ref = collection(getFirestore(), path);
-      return collectionData(query(ref, collectionQuery), { idField: 'id' });
-    }
+  //***** Documentos de una Colección ****  
+  getCollectionData(path: string, collectionQuery?: any) {
+    const ref = collection(getFirestore(), path);
+    return collectionData(query(ref, collectionQuery), { idField: 'id' });
+  }
 
-    //----- Setear un documento -----//
+  //----- Setear un documento -----
   setDocument(path: string, data: any) {
     return setDoc(doc(getFirestore(), path), data);
   }
 
-  //----- Obtener un documento -----//
+  //----- Obtener un documento -----
   async getDocument(path: string) {
     return (await getDoc(doc(getFirestore(), path))).data();
   }
-   // =====  Método para actualizar un documento =====
-   updateDocument(path: string, data: any) {
-    return updateDoc(doc(getFirestore(), path), data);
+
+  // =====  Actualizar un documento =====
+  updateDocument(path: string, data: any) {
+    return updateDoc(doc(getFirestore(), path), data)
+      .catch(error => {
+        console.error("Error al actualizar el documento:", error);
+        throw error;
+      });
   }
 
-  //----- Eliminar un documento -----//
+  //----- Eliminar un documento -----
   deleteDocument(path: string) {
     return deleteDoc(doc(getFirestore(), path));
   }
 
-  //----- Agregar un documento -----//
+  //----- Agregar un documento -----
   addDocument(path: string, data: any) {
-    return addDoc(collection(getFirestore(), path), data);
+    const ref = collection(getFirestore(), path); // Asegúrate de usar `collection` aquí
+    return addDoc(ref, data); // Genera automáticamente un ID para el documento
   }
+  
 
-  //===== Almacenamiento con fireStorage =====//
+  //===== Almacenamiento con fireStorage =====
 
-  //----- Subir imagen -----//
+  //----- Subir imagen -----
   async uploadImage(path: string, data_url: string) {
-    return uploadString(ref(getStorage(), path), data_url, 'data_url').then(
-      () => {
-        return getDownloadURL(ref(getStorage(), path));
-      }
-    );
+    const fileName = `${Date.now()}.jpg`;
+    const fullPath = `${path}/${fileName}`;
+
+    return uploadString(ref(getStorage(), fullPath), data_url, 'data_url')
+      .then(() => getDownloadURL(ref(getStorage(), fullPath)))
+      .catch(error => {
+        console.error("Error al subir la imagen:", error);
+        throw error;
+      });
   }
 
-  //----- Obtener ruta de la imagen con su URL para reemplazar la imagen existente en firestorage -----//
+  //----- Obtener ruta de la imagen con su URL para reemplazar la imagen existente en firestorage -----
   async getFilePath(url: string) {
     return ref(getStorage(), url).fullPath;
   }
 
-  //----- Eliminar archivo de firestorage -----//
+  //----- Eliminar archivo de firestorage -----
   deleteFile(path: string) {
     return deleteObject(ref(getStorage(), path));
   }

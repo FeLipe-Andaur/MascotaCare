@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
-import { home } from './home.page'; // Usa el nombre correcto del componente
+import { Home } from './home.page'; // Usa el nombre correcto del componente
 
 describe('SeleccionMascota', () => {
   let component: Home;

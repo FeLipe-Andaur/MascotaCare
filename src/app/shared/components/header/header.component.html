@@ -5,7 +5,7 @@
       <ion-button (click)="dismissModal()" *ngIf="isModal">
         <ion-icon name="close-circle-outline"></ion-icon>
       </ion-button>
-      <ion-menu-button *ngIf="showMenu" menu="menu-content"></ion-menu-button> 
+      <ion-menu-button *ngIf="showMenu" menu="menu-content" (click)="openMenu()"></ion-menu-button> 
     </ion-buttons>
     <ion-title>
       <strong>{{ title }}</strong>
@@ -13,7 +13,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-menu contentId="menu-content" menuId="menu-content" side="start"> 
+<ion-menu contentId="menu-content" menuId="menu-content" side="start" swipeGesture="false"> 
   <ion-content class="ion-text-center">
     <ion-avatar>
       <img *ngIf="user()?.image" [src]="user()?.image" />
