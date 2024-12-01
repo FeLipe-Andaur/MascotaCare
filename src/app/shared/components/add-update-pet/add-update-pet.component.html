@@ -66,21 +66,25 @@
 
     <ion-item>
       <ion-label>Vacuna:</ion-label>
-      <ion-toggle formControlName="vacuna"></ion-toggle>
+      <ion-select formControlName="vacuna" interface="popover">
+        <ion-select-option value="true">Sí</ion-select-option>
+        <ion-select-option value="false">No</ion-select-option>
+      </ion-select>
     </ion-item>
 
-    <ion-item>
+    <ion-item>   
+
       <ion-label>Esterilizado:</ion-label>
-      <ion-toggle formControlName="esterilizado"></ion-toggle>
+      <ion-select formControlName="esterilizado" interface="popover">
+        <ion-select-option value="true">Sí</ion-select-option>
+        <ion-select-option value="false">No</ion-select-option>
+      </ion-select>
     </ion-item>
 
-    <ion-item>
+    <ion-item>   
+
       <ion-label>Próxima Visita:</ion-label>
-      <ion-input
-        formControlName="proximaVisita"
-        type="text"
-        placeholder="YYYY-MM-DD"
-      ></ion-input>
+      <ion-datetime formControlName="proximaVisita" displayFormat="YYYY-MM-DD"></ion-datetime> 
     </ion-item>
 
     <ion-button

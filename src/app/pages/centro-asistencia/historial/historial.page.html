@@ -28,8 +28,9 @@
             <p><strong>Raza:</strong> {{ pet.raza }}</p> 
             <p><strong>Edad:</strong> {{ pet.age }}</p> 
             <p><strong>Peso:</strong> {{ pet.weight }}</p> 
-            <p><strong>Vacuna:</strong> {{ pet.vacuna }}</p>
-            <p><strong>Esterilizado:</strong> {{ pet.esterilizado }}</p>  
+            <p><strong>Vacuna:</strong> {{ pet.vacuna ? 'Sí' : 'No' }}</p>
+            <p><strong>Esterilizado:</strong> {{ pet.esterilizado ? 'Sí' : 'No' }}</p>
+            <p><strong>proximaVisita:</strong> {{ pet.proximaVisita}}</p>  
           </div>
         </ion-label>
       </ion-item>
@@ -62,7 +63,7 @@
 
   <div *ngIf="!loading && !pets.length" class="empty"> 
     <ion-icon name="paw-outline"></ion-icon> 
-    <h3>No hay mascotas registradas</h3> 
+    
   </div>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
