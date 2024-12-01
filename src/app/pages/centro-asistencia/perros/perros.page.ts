@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { APIService } from 'src/app/services/APIService';
 
 @Component({
   selector: 'app-perros',
@@ -6,12 +7,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./perros.page.scss'],
 })
 export class PerrosPage implements OnInit {
+  
+  data:any= []
   sectionOpen: string | null = null; 
   openedDetails: Map<string, Set<string>> = new Map(); 
 
-  constructor() {}
+  enfermedades = []
+  auxilios = []
+  consejos = []
+  comportamientos = []
+  vacunas = []
 
-  ngOnInit() {}
+  constructor(private dataAPI:APIService) {}
+
+  ngOnInit() {
+    this.cargarDataPerros()
+  }
 
   // Método para abrir o cerrar la sección seleccionada
   toggleSection(section: string) {
@@ -55,5 +66,21 @@ export class PerrosPage implements OnInit {
 
   isExampleOpen(example: string): boolean {
     return this.exampleOpen.has(example);
+  }
+
+  cargarDataPerros(){
+    this.dataAPI.ObtenerDataPerros().subscribe(
+      (response)=>{
+        this.data = response;
+        this.enfermedades = response[0].enfermedades
+        this.auxilios = response[1].Auxilios
+        this.consejos = response[2].cuidados
+        this.comportamientos = response[3].comportamientos
+        this.vacunas = response[4].tipos
+      },
+      (error) =>{
+        console.error("Error al obtener la data")
+      }
+    )
   }
 }
