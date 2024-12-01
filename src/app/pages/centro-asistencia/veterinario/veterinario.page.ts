@@ -48,8 +48,23 @@ export class VeterinarioPage {
   
       // Agrega un marcador en la ubicación actual
       const markPoint = L.marker([this.latitude, this.longitude]);
+      const markPointVeterinario1 = L.marker([-33.0346114,-71.5249221])
+      const markPointVeterinario2 = L.marker([-33.0296242,-71.5241762])
+      const markPointVeterinario3 = L.marker([-33.0346114,-71.5249221])
+      const markPointVeterinario4 = L.marker([-33.0323726,-71.5388879])
+      const markPointVeterinario5 = L.marker([-33.032887,-71.5454197])
+      const markPointVeterinario6 = L.marker([-33.0302574,-71.5483885])
+      const markPointVeterinario7 = L.marker([-33.037782,-71.5425834])
+
       this.map.addLayer(markPoint);
-  
+      this.map.addLayer(markPointVeterinario1);
+      this.map.addLayer(markPointVeterinario2);
+      this.map.addLayer(markPointVeterinario3);
+      this.map.addLayer(markPointVeterinario4);
+      this.map.addLayer(markPointVeterinario5);
+      this.map.addLayer(markPointVeterinario6);
+      this.map.addLayer(markPointVeterinario7);
+
     } catch (error) {
       console.error('Error obteniendo la ubicación', error);
     }
