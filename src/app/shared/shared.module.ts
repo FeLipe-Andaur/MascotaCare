@@ -12,8 +12,8 @@ import { AddUpdatePetComponent } from './components/add-update-pet/add-update-pe
 
 
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent, CustomInputComponent, CustomCardComponent, CustomCardComponent,AddUpdatePetComponent,],
-  exports:[HeaderComponent, FooterComponent, CustomInputComponent, CustomCardComponent, CustomCardComponent, FormsModule, ReactiveFormsModule,AddUpdatePetComponent,],
+  declarations: [HeaderComponent, FooterComponent, CustomInputComponent,  CustomCardComponent,AddUpdatePetComponent,],
+  exports:[HeaderComponent, FooterComponent, CustomInputComponent,  CustomCardComponent, FormsModule, ReactiveFormsModule,AddUpdatePetComponent,],
   imports: [
     CommonModule, IonicModule, ReactiveFormsModule, FormsModule, RouterModule,
   ]
