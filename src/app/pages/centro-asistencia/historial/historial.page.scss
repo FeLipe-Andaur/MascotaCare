@@ -16,3 +16,19 @@ ion-content {
     margin: 0 auto;
   }
   
+  ion-list {
+    background-color: transparent; 
+  }
+
+  ion-item {
+    
+    --ion-item-background: hsl(34, 62%, 53%); 
+    --border-radius: 20px;
+    --ion-item-background: hsl(34, 62%, 53%);
+    
+  }
+
+
+  ion-item-sliding {
+    margin-bottom: 10px;
+  }
