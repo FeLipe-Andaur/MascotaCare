@@ -19,7 +19,7 @@ import {getAuth, provideAuth } from '@angular/fire/auth';
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(),
+    IonicModule.forRoot({mode: 'md'}),
     AppRoutingModule,
     FontAwesomeModule,
     AngularFireModule.initializeApp(environment.firebaseConfig), 
