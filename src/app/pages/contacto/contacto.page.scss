@@ -1,7 +1,49 @@
 ion-content {
   --background-image: url('/assets/img/fondoMascota.jpg');
-  background-size: cover;
+  background-size: cover; 
   background-repeat: no-repeat;
-
 }
 
+.contact-container { 
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  height: 100%; 
+}
+
+.contact-header { 
+  text-align: center;
+  margin-bottom: 20px; 
+}
+
+.contact-header ion-img { 
+  width: 100%;
+  max-width: 300px; 
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.contact-form { 
+  width: 90%; 
+  max-width: 500px; 
+}
+
+.contact-form ion-item {
+  --background: transparent; 
+  margin-bottom: 10px; 
+}
+
+.contact-form ion-label {
+  color: #555; 
+}
+
+.contact-form ion-input,
+.contact-form ion-textarea {
+  --padding-start: 10px; 
+  --padding-end: 10px; 
+  --border-radius: 5px; 
+}
+
+.contact-form ion-button {
+  margin-top: 15px; 
+}
