@@ -14,6 +14,7 @@ import { RouteReuseStrategy } from '@angular/router';
 // import { HttpClientModule } from '@angular/common/http';
 import { provideHttpClient } from '@angular/common/http';
 import {getAuth, provideAuth } from '@angular/fire/auth';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,6 +25,7 @@ import {getAuth, provideAuth } from '@angular/fire/auth';
     FontAwesomeModule,
     AngularFireModule.initializeApp(environment.firebaseConfig), 
     AngularFireAuthModule,
+    ReactiveFormsModule,
   ],
   providers: [{ provide: RouteReuseStrategy, useClass:
   IonicRouteStrategy }, provideAnimationsAsync(),provideHttpClient(),

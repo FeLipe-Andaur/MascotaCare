@@ -1,10 +1,7 @@
-
-<app-header  title="Seleccione su Mascota" [showMenu]="true"></app-header>
+<app-header title="Seleccione su Mascota" [showMenu]="true"></app-header>
 <ion-router-outlet id="menu-content" main></ion-router-outlet>
 
-
 <ion-content class="ion-padding" style="--background: url('/assets/img/fondoMascota.png') no-repeat center/cover;">
-  
   <div class="centered-content">
     <ion-grid>
       <ion-row>
@@ -19,6 +16,12 @@
           <div class="mascota-container" (click)="seleccionarMascota('gato')">
             <img #card src="assets/img/GatoIcono.png" alt="Gato">
           </div>
+        </ion-col>
+      </ion-row>
+      <!-- Agregar el botón aquí -->
+      <ion-row>
+        <ion-col size="12" class="ion-text-center">
+          <ion-button expand="full" (click)="goToContacto()">Ir al formulario de contacto</ion-button>
         </ion-col>
       </ion-row>
     </ion-grid>
