@@ -52,6 +52,11 @@ export class Home implements AfterViewInit {
     });
   }
 
+  // Función para redirigir al formulario de contacto
+  goToContacto() {
+    this.router.navigate(['/contacto']);
+  }
+
   // Mostrar Alerta
   cerrarSesionAlert() {
     this.presentAlert(

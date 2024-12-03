@@ -62,14 +62,17 @@ const routes: Routes = [
     loadChildren: () => import('./pages/centro-asistencia/centro-asistencia.module').then( m => m.CentroAsistenciaPageModule),
     canActivate: [authGuard],
   },
+
+  {
+    path: 'contacto',
+    loadChildren: () => import('./pages/contacto/contacto.module').then( m => m.ContactoPageModule)
+  },
+  
   //=====Siempre va al final, permnite redirigir a una pagina de error====
   {
     path: '**',
     loadChildren: () => import('./pages/error/error.module').then(m => m.ErrorPageModule)
   },
-
-
-  
 
  
 ];
