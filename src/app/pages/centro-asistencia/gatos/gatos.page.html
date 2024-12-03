@@ -15,28 +15,51 @@
     </ion-card-content>
   </ion-card>
 
-  <div *ngIf="data">
-  
-
   <!-- Enfermedades Comunes -->
   <ion-item button (click)="toggleSection('enfermedades')">
     <ion-label>Enfermedades Comunes</ion-label>
     <ion-icon [name]="sectionOpen === 'enfermedades' ? 'chevron-up' : 'chevron-down'" slot="end"></ion-icon>
   </ion-item>
   <ion-card *ngIf="sectionOpen === 'enfermedades'">
-    <ion-card-content *ngFor="let enfermedad of enfermedades">
-      <p (click)="toggleExample(enfermedad.nombre)">
-        <strong>{{enfermedad.nombre}}</strong>
-        <span *ngIf="!isExampleOpen(enfermedad.nombre)"> (Haz clic para ver más)</span>
+    <ion-card-content>
+      <!-- Enfermedad 1 -->
+      <p (click)="toggleExample('rinotraqueitis')">
+        <strong>Rinotraqueitis Viral:</strong>
+        <span *ngIf="!isExampleOpen('rinotraqueitis')"> (Haz clic para ver más)</span>
       </p>
-      <ion-card *ngIf="isExampleOpen(enfermedad.nombre)">
+      <ion-card *ngIf="isExampleOpen('rinotraqueitis')">
         <ion-card-content>
-          <p><strong>Descripción:</strong>{{enfermedad.descripcion}}</p>
-          <p><strong>Prevención:</strong> {{enfermedad.prevencion}}</p>
-          <p><strong>Tratamiento:</strong> {{enfermedad.tratamiento}}</p>
+          <p><strong>Descripción:</strong> Infección viral que causa síntomas respiratorios.</p>
+          <p><strong>Prevención:</strong> Vacunación y evitar el contacto con gatos infectados.</p>
+          <p><strong>Tratamiento:</strong> Atención veterinaria y medicamentos para aliviar los síntomas.</p>
         </ion-card-content>
-      </ion-card> 
-     
+      </ion-card>
+
+      <!-- Enfermedad 2 -->
+      <p (click)="toggleExample('panleucopenia')">
+        <strong>Panleucopenia:</strong>
+        <span *ngIf="!isExampleOpen('panleucopenia')"> (Haz clic para ver más)</span>
+      </p>
+      <ion-card *ngIf="isExampleOpen('panleucopenia')">
+        <ion-card-content>
+          <p><strong>Descripción:</strong> Enfermedad viral que afecta el sistema inmunológico.</p>
+          <p><strong>Prevención:</strong> Vacunación y evitar el contacto con gatos infectados.</p>
+          <p><strong>Tratamiento:</strong> Hidratación y cuidados veterinarios.</p>
+        </ion-card-content>
+      </ion-card>
+
+      <!-- Enfermedad 3 -->
+      <p (click)="toggleExample('leucemia')">
+        <strong>Leucemia Felina:</strong>
+        <span *ngIf="!isExampleOpen('leucemia')"> (Haz clic para ver más)</span>
+      </p>
+      <ion-card *ngIf="isExampleOpen('leucemia')">
+        <ion-card-content>
+          <p><strong>Descripción:</strong> Virus que afecta el sistema inmunológico de los gatos.</p>
+          <p><strong>Prevención:</strong> Vacunación y mantener a los gatos dentro de casa.</p>
+          <p><strong>Tratamiento:</strong> Atención veterinaria para controlar los síntomas.</p>
+        </ion-card-content>
+      </ion-card>
     </ion-card-content>
   </ion-card>
 
@@ -46,17 +69,36 @@
     <ion-icon [name]="sectionOpen === 'primerosAuxilios' ? 'chevron-up' : 'chevron-down'" slot="end"></ion-icon>
   </ion-item>
   <ion-card *ngIf="sectionOpen === 'primerosAuxilios'">
-    <ion-card-content *ngFor="let aux of auxilios">
-      <p (click)="toggleDetail(aux.nombre, 'primerosAuxilios')">
-        <strong>{{aux.nombre}}</strong>
-        <span *ngIf="!isDetailOpen(aux.nombre, 'primerosAuxilios')"> (Haz clic para ver más)</span>
+    <ion-card-content>
+      <p (click)="toggleDetail('guia', 'primerosAuxilios')">
+        <strong>Guía:</strong>
+        <span *ngIf="!isDetailOpen('guia', 'primerosAuxilios')"> (Haz clic para ver más)</span>
       </p>
-      <ion-card *ngIf="isDetailOpen(aux.nombre, 'primerosAuxilios')">
+      <ion-card *ngIf="isDetailOpen('guia', 'primerosAuxilios')">
         <ion-card-content>
-          <p>{{aux.descripcion}}</p>
+          <p>Actúa rápidamente en casos de intoxicación o heridas.</p>
         </ion-card-content>
       </ion-card>
-      
+
+      <p (click)="toggleDetail('kitBasico', 'primerosAuxilios')">
+        <strong>Kit Básico:</strong>
+        <span *ngIf="!isDetailOpen('kitBasico', 'primerosAuxilios')"> (Haz clic para ver más)</span>
+      </p>
+      <ion-card *ngIf="isDetailOpen('kitBasico', 'primerosAuxilios')">
+        <ion-card-content>
+          <p>Incluye gasas, antisépticos y pinzas.</p>
+        </ion-card-content>
+      </ion-card>
+
+      <p (click)="toggleDetail('emergencias', 'primerosAuxilios')">
+        <strong>Emergencias:</strong>
+        <span *ngIf="!isDetailOpen('emergencias', 'primerosAuxilios')"> (Haz clic para ver más)</span>
+      </p>
+      <ion-card *ngIf="isDetailOpen('emergencias', 'primerosAuxilios')">
+        <ion-card-content>
+          <p>Información de clínicas veterinarias 24 horas.</p>
+        </ion-card-content>
+      </ion-card>
     </ion-card-content>
   </ion-card>
 
@@ -66,14 +108,34 @@
     <ion-icon [name]="sectionOpen === 'cuidadoGeneral' ? 'chevron-up' : 'chevron-down'" slot="end"></ion-icon>
   </ion-item>
   <ion-card *ngIf="sectionOpen === 'cuidadoGeneral'">
-    <ion-card-content *ngFor="let consejo of consejos">
-      <p (click)="toggleDetail(consejo.nombre, 'cuidadoGeneral')">
-        <strong>{{consejo.nombre}}</strong>
-        <span *ngIf="!isDetailOpen(consejo.nombre, 'cuidadoGeneral')"> (Haz clic para ver más)</span>
+    <ion-card-content>
+      <p (click)="toggleDetail('higiene', 'cuidadoGeneral')">
+        <strong>Higiene:</strong>
+        <span *ngIf="!isDetailOpen('higiene', 'cuidadoGeneral')"> (Haz clic para ver más)</span>
       </p>
-      <ion-card *ngIf="isDetailOpen(consejo.nombre, 'cuidadoGeneral')">
+      <ion-card *ngIf="isDetailOpen('higiene', 'cuidadoGeneral')">
         <ion-card-content>
-          <p>{{consejo.descripcion}}</p>
+          <p>Asear a tu gato regularmente y revisar sus oídos.</p>
+        </ion-card-content>
+      </ion-card>
+
+      <p (click)="toggleDetail('nutricion', 'cuidadoGeneral')">
+        <strong>Nutrición:</strong>
+        <span *ngIf="!isDetailOpen('nutricion', 'cuidadoGeneral')"> (Haz clic para ver más)</span>
+      </p>
+      <ion-card *ngIf="isDetailOpen('nutricion', 'cuidadoGeneral')">
+        <ion-card-content>
+          <p>Proveer alimentos adecuados y agua fresca.</p>
+        </ion-card-content>
+      </ion-card>
+
+      <p (click)="toggleDetail('enriquecimiento', 'cuidadoGeneral')">
+        <strong>Enriquecimiento:</strong>
+        <span *ngIf="!isDetailOpen('enriquecimiento', 'cuidadoGeneral')"> (Haz clic para ver más)</span>
+      </p>
+      <ion-card *ngIf="isDetailOpen('enriquecimiento', 'cuidadoGeneral')">
+        <ion-card-content>
+          <p>Proporcionar juguetes y oportunidades para escalar.</p>
         </ion-card-content>
       </ion-card>
     </ion-card-content>
@@ -85,19 +147,26 @@
     <ion-icon [name]="sectionOpen === 'comportamiento' ? 'chevron-up' : 'chevron-down'" slot="end"></ion-icon>
   </ion-item>
   <ion-card *ngIf="sectionOpen === 'comportamiento'">
-    <ion-card-content *ngFor="let comportamiento of comportamientos">
-
-      <p (click)="toggleDetail(comportamiento.nombre, 'comportamiento')">
-        <strong>{{comportamiento.nombre}}</strong>
-        <span *ngIf="!isDetailOpen(comportamiento.nombre, 'comportamiento')"> (Haz clic para ver más)</span>
+    <ion-card-content>
+      <p (click)="toggleDetail('estres', 'comportamiento')">
+        <strong>Estrés:</strong>
+        <span *ngIf="!isDetailOpen('estres', 'comportamiento')"> (Haz clic para ver más)</span>
       </p>
-      <ion-card *ngIf="isDetailOpen(comportamiento.nombre, 'comportamiento')">
+      <ion-card *ngIf="isDetailOpen('estres', 'comportamiento')">
         <ion-card-content>
-          <p>{{comportamiento.descripcion}}</p>
+          <p>Identifica síntomas y crea un ambiente relajante.</p>
         </ion-card-content>
       </ion-card>
-     
+
+      <p (click)="toggleDetail('conductas', 'comportamiento')">
+        <strong>Conductas Problemáticas:</strong>
+        <span *ngIf="!isDetailOpen('conductas', 'comportamiento')"> (Haz clic para ver más)</span>
+      </p>
+      <ion-card *ngIf="isDetailOpen('conductas', 'comportamiento')">
+        <ion-card-content>
+          <p>Consulta a un veterinario si se presentan cambios bruscos.</p>
+        </ion-card-content>
+      </ion-card>
     </ion-card-content>
   </ion-card>
-</div>
 </ion-content>
