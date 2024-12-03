@@ -1,19 +1,24 @@
 <app-header title="Contacto" [showMenu]="true"></app-header>
 <ion-content class="ion-padding" style="--background: url('/assets/img/fondoMascota.png') no-repeat center/cover;">
-  <div class="container border mt-3 bg-light">
+  <div class="container p-4">
     <div class="row">
-      <div class="col-md- p-3 bg-primary text-white">
-        
-      
+      <!-- Columna Izquierda -->
+      <div class="col-12 mb-4">
+        <div class="bg-primary text-white p-4 rounded-lg shadow-sm">
+          <h2 class="text-center">¡Contáctanos!</h2>
+          <p class="text-center">Estamos aquí para ayudarte con cualquier duda o consulta.</p>
+        </div>
       </div>
-      <div class="col-md-6 border-left py-3">
-        <h1>Formulario</h1>
+
+      <!-- Columna Derecha (Formulario) -->
+      <div class="col-12">
+        <h1 class="text-primary mb-4 text-center">Formulario</h1>
         <form (ngSubmit)="sendMail()">
-          <div class="form-group">
-            <h5 for="name">Nombre</h5>
+          <div class="form-group mb-3">
+            <label for="name" class="form-label">Nombre</label>
             <input
               type="text"
-              class="form-control"
+              class="form-control transparent-input"
               id="name"
               [(ngModel)]="form.name"
               name="name"
@@ -21,11 +26,11 @@
               required
             />
           </div>
-          <div class="form-group">
-            <h5 for="email">Correo Electrónico</h5>
+          <div class="form-group mb-3">
+            <label for="email" class="form-label">Correo Electrónico</label>
             <input
               type="email"
-              class="form-control"
+              class="form-control transparent-input"
               id="email"
               [(ngModel)]="form.email"
               name="email"
@@ -33,19 +38,19 @@
               required
             />
           </div>
-          <div class="form-group">
-            <h5 for="message">Mensaje</h5>
+          <div class="form-group mb-4">
+            <label for="message" class="form-label">Mensaje</label>
             <textarea
-              class="form-control"
+              class="form-control transparent-input"
               id="message"
               [(ngModel)]="form.message"
               name="message"
-              rows="3"
+              rows="4"
               placeholder="Escribe tu mensaje"
               required
             ></textarea>
           </div>
-          <button class="btn btn-primary" type="submit">
+          <button class="btn btn-primary w-100 py-3 rounded-pill" type="submit">
             Enviar
           </button>
         </form>
