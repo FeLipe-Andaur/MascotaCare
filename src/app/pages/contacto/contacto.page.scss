@@ -1,49 +1,106 @@
+/* Fondo de la página */
 ion-content {
-  --background-image: url('/assets/img/fondoMascota.jpg');
-  background-size: cover; 
-  background-repeat: no-repeat;
+  --background: url('/assets/img/fondoMascota.png') no-repeat center center/cover;
+  background-size: cover;
 }
 
-.contact-container { 
-  display: flex;
-  flex-direction: column;
-  align-items: center; 
-  height: 100%; 
+/* Estilo de la columna izquierda (información) */
+.bg-primary {
+  background-color: #6a11cb;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  border-radius: 12px;
+  padding: 20px;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
 }
 
-.contact-header { 
-  text-align: center;
-  margin-bottom: 20px; 
+/* Campos transparentes */
+.transparent-input {
+  background-color: rgba(187, 116, 58, 0.904); /* Fondo semitransparente */
+  border: none; /* Sin bordes */
+  border-radius: 8px; /* Bordes suaves */
+  color: #fff; /* Texto blanco */
+  font-size: 1rem;
+  padding: 12px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra ligera */
 }
 
-.contact-header ion-img { 
-  width: 100%;
-  max-width: 300px; 
-  height: auto;
-  margin-bottom: 10px;
+.transparent-input::placeholder {
+  color: rgba(255, 255, 255, 0.8); /* Placeholder blanco semi-transparente */
+  font-style: italic;
 }
 
-.contact-form { 
-  width: 90%; 
-  max-width: 500px; 
+.transparent-input:focus {
+  outline: none;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Efecto brillante al enfocar */
 }
 
-.contact-form ion-item {
-  --background: transparent; 
-  margin-bottom: 10px; 
+/* Botón de envío */
+form .btn {
+  background-color: #6a11cb;
+  color: #fff;
+  transition: all 0.3s ease-in-out;
+  font-weight: bold;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
 }
 
-.contact-form ion-label {
-  color: #555; 
+form .btn:hover {
+  background-color: #2575fc;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(37, 117, 252, 0.3);
 }
 
-.contact-form ion-input,
-.contact-form ion-textarea {
-  --padding-start: 10px; 
-  --padding-end: 10px; 
-  --border-radius: 5px; 
+/* Estructura del formulario */
+.container {
+  padding: 0 20px;
 }
 
-.contact-form ion-button {
-  margin-top: 15px; 
+form .form-control {
+  font-size: 1rem;
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+form .form-group {
+  margin-bottom: 1.5rem;
+}
+
+/* Alineación y espaciado */
+h1, h2 {
+  font-family: 'Roboto', sans-serif;
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+p {
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.form-label {
+  font-weight: bold;
+  color: #fff;
+}
+
+/* Diseño móvil (responsive) */
+@media (max-width: 768px) {
+  .bg-primary {
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .form-control {
+    font-size: 0.9rem;
+  }
+
+  button {
+    font-size: 1rem;
+    padding: 12px;
+  }
 }
