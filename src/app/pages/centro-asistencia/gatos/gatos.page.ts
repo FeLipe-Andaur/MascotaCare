@@ -1,30 +1,16 @@
-import { Component,OnInit } from '@angular/core';
-import { APIService } from 'src/app/services/APIService';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-gatos',
   templateUrl: './gatos.page.html',
   styleUrls: ['./gatos.page.scss'],
 })
-
-export class GatosPage implements OnInit{
-  
-
-  data:any = []
-  enfermedades = []
-  auxilios = []
-  consejos = []
-  comportamientos = []
-
+export class GatosPage {
   sectionOpen: string | null = null;
   exampleOpen: { [key: string]: boolean } = {};
   detailOpen: { [key: string]: { [key: string]: boolean } } = {};
 
-  constructor(private dataAPI:APIService) {}
-
-  ngOnInit(){
-    this.cargarDataGatos()
-  }
+  constructor() {}
 
   toggleSection(section: string) {
     this.sectionOpen = this.sectionOpen === section ? null : section;
@@ -48,21 +34,4 @@ export class GatosPage implements OnInit{
   isDetailOpen(detail: string, section: string): boolean {
     return this.detailOpen[section]?.[detail] || false;
   }
-
-  cargarDataGatos(){
-    this.dataAPI.ObtenerDataGatos().subscribe(
-      (response)=>{
-        this.data = response;
-        this.enfermedades = response[0].enfermedades
-        this.auxilios = response[1].Auxilios
-        this.consejos = response[2].cuidados
-        this.comportamientos = response[3].comportamientos
-      },
-      (error) =>{
-        console.error("Error al obtener la data")
-      }
-    )
-  }
-
-  
 }
