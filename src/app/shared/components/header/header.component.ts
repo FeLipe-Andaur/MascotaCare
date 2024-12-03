@@ -30,10 +30,16 @@ export class HeaderComponent implements OnInit {
       
     },
     {
+      title: 'Contacto',
+      url: '/contacto', 
+      icon: 'mail-outline', 
+    },
+    {
       title: 'Centro de Asistencia',
       url: '/centro-asistencia', 
       icon: 'medkit-outline', 
     },
+   
     
   ];
 
